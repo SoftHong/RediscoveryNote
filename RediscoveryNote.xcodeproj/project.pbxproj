@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C11DE6081F94EF7B00F268BA /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DE6071F94EF7B00F268BA /* Word.swift */; };
+		C11DE60A1F94F2B400F268BA /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11DE6091F94F2B400F268BA /* WordCell.swift */; };
 		C12F04171F8C5DCE00316006 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12F04161F8C5DCE00316006 /* AppDelegate.swift */; };
 		C12F04191F8C5DCE00316006 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12F04181F8C5DCE00316006 /* ViewController.swift */; };
 		C12F041C1F8C5DCE00316006 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C12F041A1F8C5DCE00316006 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C11DE6071F94EF7B00F268BA /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		C11DE6091F94F2B400F268BA /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
 		C12F04131F8C5DCE00316006 /* RediscoveryNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RediscoveryNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C12F04161F8C5DCE00316006 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C12F04181F8C5DCE00316006 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				C12F04161F8C5DCE00316006 /* AppDelegate.swift */,
+				C11DE6071F94EF7B00F268BA /* Word.swift */,
+				C11DE6091F94F2B400F268BA /* WordCell.swift */,
 				C12F04181F8C5DCE00316006 /* ViewController.swift */,
 				C12F041A1F8C5DCE00316006 /* Main.storyboard */,
 				C12F041D1F8C5DCE00316006 /* Assets.xcassets */,
@@ -259,6 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11DE6081F94EF7B00F268BA /* Word.swift in Sources */,
+				C11DE60A1F94F2B400F268BA /* WordCell.swift in Sources */,
 				C12F04191F8C5DCE00316006 /* ViewController.swift in Sources */,
 				C12F04171F8C5DCE00316006 /* AppDelegate.swift in Sources */,
 			);

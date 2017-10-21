@@ -18,9 +18,9 @@ class ViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         self.wordList.append(WordModel(word: "지선", meaning: "모든 아름다움의 근원"))
-        self.wordList.append(WordModel(word: "아일", meaning: "순수하고 자유로우며 언제나 사랑이 넘치는 아이", pron: nil, part: nil))
-        self.wordList.append(WordModel(word: "팽팽", meaning: "언제나 팽팽한 긴장감을 유지하며 사랑이 넘치는 아이"))
-        self.wordList.append(WordModel(word: "팍팍", meaning: "팽팽이 보다 힘이 세며 나보다 강력함을 일깨워주는 아이"))
+        self.wordList.append(WordModel(word: "아일", meaning: "순수하고 자유로우며 언제나 사랑이 넘치는 아이", pron: "아이일", part: "명사"))
+        self.wordList.append(WordModel(word: "팽팽", meaning: "언제나 팽팽한 긴장감을 유지하며 사랑이 넘치는 아이", pron: "팽-팽", part: "?!"))
+        self.wordList.append(WordModel(word: "팍팍", meaning: "팽팽이 보다 힘이 세며 나보다 강력함을 일깨워주는 아이", pron: "팍!팍!", part: "동명사"))
         self.tableView.reloadData()
 
         

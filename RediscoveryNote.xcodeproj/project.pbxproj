@@ -20,6 +20,12 @@
 		C12F042C1F8C5DCE00316006 /* RediscoveryNoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12F042B1F8C5DCE00316006 /* RediscoveryNoteTests.swift */; };
 		C12F04371F8C5DCE00316006 /* RediscoveryNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12F04361F8C5DCE00316006 /* RediscoveryNoteUITests.swift */; };
 		C153DF6B1F9B421300B4E0AD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C153DF6A1F9B421300B4E0AD /* Constants.swift */; };
+		C1FD24D61FB1988A00EACCDA /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD24D51FB1988A00EACCDA /* UIFont+Custom.swift */; };
+		C1FD24D91FB198C000EACCDA /* SDMiSaeng.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1FD24D81FB198B600EACCDA /* SDMiSaeng.ttf */; };
+		C1FD24DC1FB1A2F900EACCDA /* NanumMyeongjoExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1FD24DB1FB1A1B300EACCDA /* NanumMyeongjoExtraBold.ttf */; };
+		C1FD24DD1FB1A2FB00EACCDA /* NanumMyeongjo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1FD24DA1FB1A1B300EACCDA /* NanumMyeongjo.ttf */; };
+		C1FD24DF1FB1A3A700EACCDA /* NanumMyeongjoBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1FD24DE1FB1A3A700EACCDA /* NanumMyeongjoBold.ttf */; };
+		C1FD24E11FB1A45300EACCDA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD24E01FB1A45300EACCDA /* DetailViewController.swift */; };
 		EB1B64CD67D4759312BE98D7 /* Pods_RediscoveryNoteUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C9CA74EC5AE76D94F818D3A /* Pods_RediscoveryNoteUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +71,12 @@
 		C12F04361F8C5DCE00316006 /* RediscoveryNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RediscoveryNoteUITests.swift; sourceTree = "<group>"; };
 		C12F04381F8C5DCE00316006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C153DF6A1F9B421300B4E0AD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C1FD24D51FB1988A00EACCDA /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
+		C1FD24D81FB198B600EACCDA /* SDMiSaeng.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SDMiSaeng.ttf; sourceTree = "<group>"; };
+		C1FD24DA1FB1A1B300EACCDA /* NanumMyeongjo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjo.ttf; sourceTree = "<group>"; };
+		C1FD24DB1FB1A1B300EACCDA /* NanumMyeongjoExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjoExtraBold.ttf; sourceTree = "<group>"; };
+		C1FD24DE1FB1A3A700EACCDA /* NanumMyeongjoBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjoBold.ttf; sourceTree = "<group>"; };
+		C1FD24E01FB1A45300EACCDA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C4471D91EC5FBF7D6A39A45A /* Pods-RediscoveryNoteTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RediscoveryNoteTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RediscoveryNoteTests/Pods-RediscoveryNoteTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBD34A1E2895688C57D1E62D /* Pods-RediscoveryNoteTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RediscoveryNoteTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RediscoveryNoteTests/Pods-RediscoveryNoteTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,11 +147,14 @@
 		C12F04151F8C5DCE00316006 /* RediscoveryNote */ = {
 			isa = PBXGroup;
 			children = (
+				C1FD24D71FB198A900EACCDA /* Font */,
 				C12F04161F8C5DCE00316006 /* AppDelegate.swift */,
 				C153DF6A1F9B421300B4E0AD /* Constants.swift */,
 				C11DE6071F94EF7B00F268BA /* WordModel.swift */,
 				C11DE6091F94F2B400F268BA /* WordCell.swift */,
 				C12F04181F8C5DCE00316006 /* ViewController.swift */,
+				C1FD24E01FB1A45300EACCDA /* DetailViewController.swift */,
+				C1FD24D51FB1988A00EACCDA /* UIFont+Custom.swift */,
 				C117B5F51F9B8D2600BB7392 /* UIImage+Custom.swift */,
 				C12F041A1F8C5DCE00316006 /* Main.storyboard */,
 				C12F041D1F8C5DCE00316006 /* Assets.xcassets */,
@@ -165,6 +180,17 @@
 				C12F04381F8C5DCE00316006 /* Info.plist */,
 			);
 			path = RediscoveryNoteUITests;
+			sourceTree = "<group>";
+		};
+		C1FD24D71FB198A900EACCDA /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD24DA1FB1A1B300EACCDA /* NanumMyeongjo.ttf */,
+				C1FD24DB1FB1A1B300EACCDA /* NanumMyeongjoExtraBold.ttf */,
+				C1FD24DE1FB1A3A700EACCDA /* NanumMyeongjoBold.ttf */,
+				C1FD24D81FB198B600EACCDA /* SDMiSaeng.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		F0F2787D25F142FA425AC7C5 /* Frameworks */ = {
@@ -293,7 +319,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1FD24DD1FB1A2FB00EACCDA /* NanumMyeongjo.ttf in Resources */,
+				C1FD24D91FB198C000EACCDA /* SDMiSaeng.ttf in Resources */,
+				C1FD24DF1FB1A3A700EACCDA /* NanumMyeongjoBold.ttf in Resources */,
 				C12F04211F8C5DCE00316006 /* LaunchScreen.storyboard in Resources */,
+				C1FD24DC1FB1A2F900EACCDA /* NanumMyeongjoExtraBold.ttf in Resources */,
 				C12F041E1F8C5DCE00316006 /* Assets.xcassets in Resources */,
 				C12F041C1F8C5DCE00316006 /* Main.storyboard in Resources */,
 			);
@@ -459,11 +489,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C153DF6B1F9B421300B4E0AD /* Constants.swift in Sources */,
+				C1FD24D61FB1988A00EACCDA /* UIFont+Custom.swift in Sources */,
 				C11DE6081F94EF7B00F268BA /* WordModel.swift in Sources */,
 				C11DE60A1F94F2B400F268BA /* WordCell.swift in Sources */,
 				C12F04191F8C5DCE00316006 /* ViewController.swift in Sources */,
 				C117B5F61F9B8D2600BB7392 /* UIImage+Custom.swift in Sources */,
 				C12F04171F8C5DCE00316006 /* AppDelegate.swift in Sources */,
+				C1FD24E11FB1A45300EACCDA /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

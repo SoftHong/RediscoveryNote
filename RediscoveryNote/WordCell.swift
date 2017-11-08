@@ -37,6 +37,7 @@ class WordCell: UITableViewCell {
         self.addSubview(wordLabel)
         self.addSubview(meaningLabel)
         
+        
         thumbnailView.image = UIImage.init(named: "jesun")?.resizeImage(targetSize: thumbnailView.frame.size).circleMasked
         thumbnailView.contentMode = .scaleAspectFill
         
@@ -48,6 +49,7 @@ class WordCell: UITableViewCell {
         meaningLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let guides = self.layoutMarginsGuide
+
         thumbnailView.topAnchor.constraint(equalTo: guides.topAnchor).isActive = true
         thumbnailView.trailingAnchor.constraint(equalTo: guides.trailingAnchor).isActive = true
         thumbnailView.heightAnchor.constraint(equalToConstant: 44)

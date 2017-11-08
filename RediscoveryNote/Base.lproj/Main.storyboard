@@ -39,7 +39,7 @@
             </objects>
             <point key="canvasLocation" x="-528" y="238"/>
         </scene>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="MOo-gC-5tL">
             <objects>
                 <viewController id="j1O-Ry-dNw" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="MPE-pS-OnC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="GPz-b6-iYF"/>
+                    <tabBarItem key="tabBarItem" systemItem="more" id="GPz-b6-iYF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edF-n0-XPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

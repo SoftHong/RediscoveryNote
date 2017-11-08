@@ -13,4 +13,8 @@ struct Constants {
         static let medium = CGFloat(30)
         static let large = CGFloat(44)
     }
+    struct Font{
+        static let small = CGFloat(14)
+        static let medium = CGFloat(26)
+    }
 }

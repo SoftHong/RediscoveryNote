@@ -33,22 +33,18 @@ class ViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.register(WordCell.self, forCellReuseIdentifier: "reuseIdentifier")
         
-        self.getWordList()
-        self.tableView.reloadData()
-        self.animateTable()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
         self.getWordList()
-        self.tableView.reloadData()
+//        self.tableView.reloadData()
+//        self.animateTable()
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
-    
+
     func animateTable() {
-        
-        self.tableView.reloadData()
         
         let cells = tableView.visibleCells
         let tableHeight: CGFloat = tableView.bounds.size.height
@@ -61,6 +57,7 @@ class ViewController: UITableViewController {
             }, completion: nil)
         }
     }
+
     
     fileprivate func makeNaviItems(){
         

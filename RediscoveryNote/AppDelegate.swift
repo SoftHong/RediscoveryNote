@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Set translucent. (Default value is already true, so this can be removed if desired.)
         UINavigationBar.appearance().isTranslucent = true
         
+    UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
+        
         if let font = UIFont.init(customFont: .Myeongjo, withSize: Constants.Font.small){
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font : font], for: .normal)
                 UINavigationBar.appearance().titleTextAttributes = [kCTFontAttributeName as NSAttributedStringKey:font]

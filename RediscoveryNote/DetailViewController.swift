@@ -60,8 +60,8 @@ class DetailViewController: UIViewController {
         lineView.layer.shadowOpacity = 0.2
         
         thumbnailView.contentMode = .scaleAspectFill
-        thumbnailView.image = UIImage.init(named: "jesun")
-            
+//        thumbnailView.image = UIImage.init(named: "jesun")
+        
 //            ?.resizeImage(targetSize: CGSize.init(width: view.frame.width-32, height: view.frame.width-32))
         thumbnailView.clipsToBounds = true
 
@@ -92,10 +92,10 @@ class DetailViewController: UIViewController {
         
         scrollView.bottomAnchor.constraint(equalTo: guides.bottomAnchor, constant: -Constants.Margin.large).isActive = true
         
-        thumbnailView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: Constants.Margin.large).isActive = true
-        thumbnailView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        thumbnailView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
+        thumbnailView.leadingAnchor.constraint(equalTo: guides.leadingAnchor).isActive = true
         thumbnailView.trailingAnchor.constraint(equalTo: guides.trailingAnchor).isActive = true
-        thumbnailView.heightAnchor.constraint(lessThanOrEqualTo: thumbnailView.widthAnchor, multiplier: 1.0).isActive = true
+        thumbnailView.heightAnchor.constraint(equalTo: thumbnailView.widthAnchor).isActive = true
         
         wordLabel.topAnchor.constraint(equalTo: thumbnailView.bottomAnchor, constant: CGFloat(Constants.Margin.large)).isActive = true
         wordLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(Constants.Margin.large)).isActive = true
@@ -133,7 +133,6 @@ class DetailViewController: UIViewController {
             
             contentView.frame = CGRect.init(x: contentView.frame.origin.x, y: contentView.frame.origin.y, width: contentView.frame.width, height: scrollView.contentSize.height)
         }
-
     }
     
     
@@ -141,6 +140,11 @@ class DetailViewController: UIViewController {
         
         if let wordModel = wordModel{
             
+            if let imagePath = wordModel.imagePath{
+                let image = UIImage.init(contentsOfFile: imagePath)
+                thumbnailView?.image = image
+            }
+
             self.wordLabel?.text = wordModel.word
             
             if let meaning = wordModel.meaning{

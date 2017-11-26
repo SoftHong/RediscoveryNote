@@ -11,4 +11,5 @@ import RealmSwift
 class WordModel: Object{
     @objc dynamic var word: String?
     @objc dynamic var meaning: String?
+    @objc dynamic var imagePath: String?
 }

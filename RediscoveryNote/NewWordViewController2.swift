@@ -19,7 +19,7 @@ class NewWordViewController2: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "완료", style: .plain, target: self, action: #selector(nextBtnDidTap))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "다음", style: .plain, target: self, action: #selector(nextBtnDidTap))
         self.contentSizeInPopup = CGSize.init(width: 300, height: 300)
         self.landscapeContentSizeInPopup = CGSize.init(width: 400, height: 200)
         
@@ -52,18 +52,11 @@ class NewWordViewController2: UIViewController {
             return
         }
         
-        
-        if let word = wordModel.word{
-            wordModel.word = word
-        }
         wordModel.meaning = textField.text
         
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(wordModel)
-        }
-        
-        self.dismiss(animated: true, completion: nil)
+        let newWordVC = NewWordViewController3()
+        newWordVC.wordModel = wordModel
+        self.popupController?.push(newWordVC, animated: true)
     }
 
     /*

@@ -20,18 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().tintColor = UIColor.black
         // Sets background to a blank/empty image
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        // Sets shadow (line below the bar) to a blank image
-        UINavigationBar.appearance().shadowImage = UIImage()
-        // Sets the translucent background color
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+//        // Sets shadow (line below the bar) to a blank image
+//        UINavigationBar.appearance().shadowImage = UIImage()
+//        // Sets the translucent background color
         UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
         // Set translucent. (Default value is already true, so this can be removed if desired.)
-        UINavigationBar.appearance().isTranslucent = true
+//        UINavigationBar.appearance().isTranslucent = true
+    UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-60, 0), for:UIBarMetrics.default)
         
-    UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60), for:UIBarMetrics.default)
-        
-        if let font = UIFont.init(customFont: .Myeongjo, withSize: Constants.Font.small){
+        if let font = UIFont.init(customFont: .MyeongjoBold, withSize: Constants.Font.small){
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font : font], for: .normal)
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font : font], for: .highlighted)
                 UINavigationBar.appearance().titleTextAttributes = [kCTFontAttributeName as NSAttributedStringKey:font]
         }
         

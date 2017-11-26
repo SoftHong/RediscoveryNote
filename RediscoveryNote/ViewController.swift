@@ -14,12 +14,12 @@ class ViewController: UITableViewController {
     
     let reuseIdentifier = "reuseIdentifier"
     var wordList: Results<WordModel>?
+    var filterList: Results<WordModel>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        self.navigationController?.view.backgroundColor = UIColor.white
+         self.navigationController?.view.backgroundColor = UIColor.white
         
 //        self.wordList.append(WordModel(word: "지선", meaning: "모든 아름다움의 근원\n당신과의 순간을 생각하면 저절로 행복해진다."))
 //        self.wordList.append(WordModel(word: "아일", meaning: "순수하고 자유로우며 언제나 사랑이 넘치는 아이", part: "명사"))
@@ -37,11 +37,19 @@ class ViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
+        self.tableView.alpha = 1.0
         self.getWordList()
-//        self.tableView.reloadData()
-//        self.animateTable()
-        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        self.tableView.reloadData()
+        self.animateTable()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        UIView.animate(withDuration: 1.0) {
+            self.tableView.alpha = 0.0
+        }
     }
 
     func animateTable() {
@@ -50,20 +58,28 @@ class ViewController: UITableViewController {
         let tableHeight: CGFloat = tableView.bounds.size.height
         
         for (index, cell) in cells.enumerated() {
-            
             cell.transform = CGAffineTransform.init(translationX: 0, y: tableHeight)
-            UIView.animate(withDuration: 2.0, delay: 0.05 * Double(index), usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: [], animations: {
+            UIView.animate(withDuration: 1.6, delay: 0.05 * Double(index), usingSpringWithDamping: 1.0, initialSpringVelocity: 0, options: [], animations: {
                 cell.transform = CGAffineTransform.init(translationX: 0, y: 0);
             }, completion: nil)
         }
     }
-
     
     fileprivate func makeNaviItems(){
         
         let addWordButton = UIBarButtonItem.init(title: "추가", style: .plain, target: self, action: #selector(addWord))
 
         self.navigationItem.setRightBarButton(addWordButton, animated: true)
+        
+        let serachController = UISearchController.init(searchResultsController: nil)
+        // UISearchController.init() 만 써도 되지 않을까?
+        
+        serachController.searchBar.backgroundImage = UIImage()
+    
+        serachController.searchResultsUpdater = self
+        serachController.searchBar.placeholder = "어떤 단어를 찾아볼까요"
+        navigationItem.searchController = serachController
+        definesPresentationContext = true
     }
     
     @objc fileprivate func addWord(){
@@ -85,11 +101,20 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let wordList = self.wordList{
-            return wordList.count
+        if isSeraching(){
+            
+            if let filterList = self.filterList{
+                return filterList.count
+            }
+            
         }else{
-            return 0
+        
+            if let wordList = self.wordList{
+                return wordList.count
+            }
         }
+        
+        return 0
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,26 +124,52 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-                
-        if let wordList = self.wordList, let wordCell = cell as? WordCell, wordList.count > indexPath.row{
-            let wordModel = wordList[indexPath.row]
+        
+        if let wordCell = cell as? WordCell{
             
-            wordCell.wordModel = wordModel
+            if isSeraching(){
+                
+                if let filterList = self.filterList,
+                    filterList.count > indexPath.row{
+                    
+                    wordCell.wordModel = filterList[indexPath.row]
+                }
+                
+            }else{
+                if let wordList = self.wordList,
+                    wordList.count > indexPath.row{
+                    
+                    wordCell.wordModel = wordList[indexPath.row]
+                }
+            }
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        var wordModel: WordModel?
+        if isSeraching(){
+            if let filterList = self.filterList,
+                filterList.count > indexPath.row{
+                wordModel = filterList[indexPath.row]
+            
+            }
+        }else{
+            if let wordList = self.wordList,
+                wordList.count > indexPath.row{
+                
+                wordModel = wordList[indexPath.row]
+            }
+        }
         
-        guard let wordList = self.wordList,
-            wordList.count > indexPath.row else { return }
-        
-        let wordModel = wordList[indexPath.row]
-        self.tableView.deselectRow(at: indexPath, animated: true)
-        let detailVC = DetailViewController()
-        detailVC.wordModel = wordModel
-        self.show(detailVC, sender: self)
+        if let wordModel = wordModel{
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            let detailVC = DetailViewController()
+            detailVC.wordModel = wordModel
+            self.show(detailVC, sender: self)
+        }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -132,15 +183,24 @@ class ViewController: UITableViewController {
             if let wordList = self.wordList,
                 wordList.count > indexPath.row{
                 
+
+                
                 let targetModel = wordList[indexPath.row]
+                
+                if let imagePath = targetModel.imagePath{
+                    do {
+                        try FileManager.default.removeItem(atPath: imagePath)
+                    } catch let error as NSError {
+                        print("Error: \(error.domain)")
+                    }
+                }
+                
                 let realm = try! Realm()
                 try! realm.write {
                     realm.delete(targetModel)
                 }
                 self.tableView.reloadData()
             }
-            
-            
         }
     }
     
@@ -150,6 +210,39 @@ class ViewController: UITableViewController {
         let realm = try! Realm()
         let wordList = realm.objects(WordModel.self)
         self.wordList = wordList
+    }
+    
+    // MARK:- Serach BAr
+    
+    func serachBarIsEmpty() -> Bool{
+        if let serachController = navigationItem.searchController{
+            return serachController.searchBar.text?.isEmpty ?? true
+        }
+        
+        return true
+    }
+    
+    func filterContent(text: String){
+        if let wordList = self.wordList{
+            self.filterList = wordList.filter("word contains '\(text)'")
+            self.tableView.reloadData()
+        }
+    }
+    
+    func isSeraching() -> Bool{
+        
+        guard let serachController = self.navigationItem.searchController else { return false }
+        return serachController.isActive && !self.serachBarIsEmpty()
+    }
+}
+
+extension ViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        if let text = searchController.searchBar.text{
+            
+            self.filterContent(text: text)
+        }
     }
 }
 

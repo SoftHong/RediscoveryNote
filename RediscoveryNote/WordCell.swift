@@ -25,7 +25,7 @@ class WordCell: UITableViewCell {
         
         self.backgroundColor = UIColor.clear
         
-        let thumbnailView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 66, height: 66))
+        let thumbnailView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: 44, height: 44))
         let wordLabel = UILabel()
         let meaningLabel = UILabel()
         
@@ -33,13 +33,12 @@ class WordCell: UITableViewCell {
         self.wordLabel = wordLabel
         self.meaningLabel = meaningLabel
         
-        self.addSubview(thumbnailView)
         self.addSubview(wordLabel)
         self.addSubview(meaningLabel)
+        self.addSubview(thumbnailView)
         
-        
-        thumbnailView.image = UIImage.init(named: "jesun")?.resizeImage(targetSize: thumbnailView.frame.size).circleMasked
-        thumbnailView.contentMode = .scaleAspectFill
+//        thumbnailView.image = UIImage.init(named: "jesun")?.resizeImage(targetSize: thumbnailView.frame.size).circleMasked
+//        thumbnailView.contentMode = .scaleAspectFill
         
         wordLabel.font = UIFont.init(customFont: .MyeongjoBold, withSize: 26)
         meaningLabel.font = UIFont.init(customFont: .Myeongjo, withSize: 14)
@@ -49,12 +48,12 @@ class WordCell: UITableViewCell {
         meaningLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let guides = self.layoutMarginsGuide
-
-        thumbnailView.topAnchor.constraint(equalTo: guides.topAnchor).isActive = true
-        thumbnailView.trailingAnchor.constraint(equalTo: guides.trailingAnchor).isActive = true
-        thumbnailView.heightAnchor.constraint(equalToConstant: 44)
-        thumbnailView.widthAnchor.constraint(equalTo: heightAnchor)
         
+        thumbnailView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        thumbnailView.trailingAnchor.constraint(equalTo: guides.trailingAnchor).isActive = true
+        thumbnailView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        thumbnailView.widthAnchor.constraint(equalTo: thumbnailView.heightAnchor).isActive = true
+
         wordLabel.topAnchor.constraint(equalTo: guides.topAnchor, constant: 0).isActive = true
         wordLabel.leadingAnchor.constraint(equalTo: guides.leadingAnchor).isActive = true
         
@@ -89,13 +88,28 @@ class WordCell: UITableViewCell {
         
         if let wordModel = wordModel{
             
+            if let imagePath = wordModel.imagePath{
+                
+                let imageSize = CGSize.init(width: 100, height: 100)
+                if let image = UIImage.init(contentsOfFile: imagePath){
+                    thumbnailView?.image = image.resizeImage(targetSize: imageSize).circleMasked
+
+                }else{
+                    print("not found")
+                }
+                
+                
+            }
+            
             self.wordLabel?.text = wordModel.word
+            self.wordLabel?.sizeToFit()
             
             if let meaning = wordModel.meaning{
                 self.meaningLabel?.text = meaning
             }else{
                 self.meaningLabel?.text = nil
             }
+            meaningLabel?.sizeToFit()
         }
     }
 }

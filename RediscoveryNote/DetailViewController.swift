@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import STPopup
 
 class DetailViewController: UIViewController {
 
@@ -26,9 +27,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.Custom.background
+        self.setNavi()
         
         let scrollView = UIScrollView()
         let thumbnailView = UIImageView()
@@ -53,7 +53,8 @@ class DetailViewController: UIViewController {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.layer.cornerRadius = 10.0
 
-        lineView.layer.backgroundColor = CGColor.init(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
+//        lineView.layer.backgroundColor = CGColor.init(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
+        lineView.layer.backgroundColor = UIColor.white.cgColor
         lineView.layer.masksToBounds = false
         lineView.layer.cornerRadius = 10.0
         lineView.layer.shadowOffset = CGSize.init(width: -1, height: 2)
@@ -106,9 +107,23 @@ class DetailViewController: UIViewController {
         meaningLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -CGFloat(Constants.Margin.large)).isActive = true
         meaningLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -CGFloat(Constants.Margin.large)).isActive = true
         
+        let labelAnimation: CATransition = CATransition()
+        labelAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        labelAnimation.type = kCATransitionPush
+        labelAnimation.subtype = kCATransitionFromTop
+        labelAnimation.duration = 1.5
+        
+        wordLabel.layer.add(labelAnimation, forKey: kCATransitionPush)
+        meaningLabel.layer.add(labelAnimation, forKey: kCATransitionPush)
+        
         thumbnailView.alpha = 0.0
+        wordLabel.alpha = 0.0
+        meaningLabel.alpha = 0.0
+
         UIView.animate(withDuration: 2.0, animations: {
             thumbnailView.alpha = 1.0
+            wordLabel.alpha = 1.0
+            meaningLabel.alpha = 1.0
         })
         
         self.setContent()
@@ -117,12 +132,31 @@ class DetailViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.setContent()
         self.updateContentView()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setNavi(){
+        
+        let editWordButton = UIBarButtonItem.init(title: "편집", style: .plain, target: self, action: #selector(editWord))
+        
+        self.navigationItem.setRightBarButton(editWordButton, animated: true)
+        
+    }
+    
+    @objc fileprivate func editWord(){
+        
+        let newWordVC = NewWordViewController()
+        newWordVC.wordModel = wordModel
+        let popupController = STPopupController.init(rootViewController: newWordVC)
+        popupController.present(in: self)
+        popupController.containerView.layer.cornerRadius = 10.0
     }
     
     func updateContentView() {
@@ -140,8 +174,10 @@ class DetailViewController: UIViewController {
         
         if let wordModel = wordModel{
             
-            if let imagePath = wordModel.imagePath{
-                let image = UIImage.init(contentsOfFile: imagePath)
+            if let fileName = wordModel.fileName{
+                
+                let imagePath = URL.getDocumentsDirectory().appendingPathComponent(fileName)
+                let image = UIImage.init(contentsOfFile: imagePath.path)
                 thumbnailView?.image = image
             }
 

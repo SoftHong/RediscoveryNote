@@ -37,9 +37,6 @@ class WordCell: UITableViewCell {
         self.addSubview(meaningLabel)
         self.addSubview(thumbnailView)
         
-//        thumbnailView.image = UIImage.init(named: "jesun")?.resizeImage(targetSize: thumbnailView.frame.size).circleMasked
-//        thumbnailView.contentMode = .scaleAspectFill
-        
         wordLabel.font = UIFont.init(customFont: .MyeongjoBold, withSize: 26)
         meaningLabel.font = UIFont.init(customFont: .Myeongjo, withSize: 14)
         
@@ -88,17 +85,21 @@ class WordCell: UITableViewCell {
         
         if let wordModel = wordModel{
             
-            if let imagePath = wordModel.imagePath{
+            if let fileName = wordModel.fileName{
+                
+                print("cell: \(fileName)")
                 
                 let imageSize = CGSize.init(width: 100, height: 100)
-                if let image = UIImage.init(contentsOfFile: imagePath){
+                let imagePath = URL.getDocumentsDirectory().appendingPathComponent(fileName)
+
+                if let image = UIImage.init(contentsOfFile: imagePath.path){
                     thumbnailView?.image = image.resizeImage(targetSize: imageSize).circleMasked
 
                 }else{
                     print("not found")
                 }
-                
-                
+            }else{
+                thumbnailView?.image = nil
             }
             
             self.wordLabel?.text = wordModel.word

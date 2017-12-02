@@ -15,19 +15,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        UITabBar.appearance().tintColor = UIColor.Custom.tint
+        UINavigationBar.appearance().tintColor = UIColor.Custom.tint
         
-        UITabBar.appearance().tintColor = UIColor.black
         
-        UINavigationBar.appearance().tintColor = UIColor.black
         // Sets background to a blank/empty image
 //        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 //        // Sets shadow (line below the bar) to a blank image
 //        UINavigationBar.appearance().shadowImage = UIImage()
 //        // Sets the translucent background color
-        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+//        UINavigationBar.appearance().backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+//        UINavigationBar.appearance().backgroundColor = UIColor.Custom.background
         // Set translucent. (Default value is already true, so this can be removed if desired.)
 //        UINavigationBar.appearance().isTranslucent = true
-    UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-60, 0), for:UIBarMetrics.default)
+      
+        UISearchBar.appearance().tintColor = UIColor.Custom.tint
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-60, 0), for:UIBarMetrics.default)
         
         if let font = UIFont.init(customFont: .MyeongjoBold, withSize: Constants.Font.small){
             UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font : font], for: .normal)

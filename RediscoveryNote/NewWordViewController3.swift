@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class NewWordViewController3: UIViewController {
-
+    
     var wordModel: WordModel?
     var imageBtn: UIButton?
     var imageView: UIImageView?
@@ -18,7 +18,7 @@ class NewWordViewController3: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "완료", style: .plain, target: self, action: #selector(nextBtnDidTap))
         self.contentSizeInPopup = CGSize.init(width: 300, height: 300)
@@ -34,7 +34,7 @@ class NewWordViewController3: UIViewController {
         
         self.view.addSubview(imageView)
         self.view.addSubview(imageBtn)
-
+        
         imageBtn.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -48,14 +48,28 @@ class NewWordViewController3: UIViewController {
         imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
+        if let wordModel = self.wordModel,
+            let fileName = wordModel.fileName{
+            
+            print("\(fileName)")
+            
+            let imagePath = URL.getDocumentsDirectory().appendingPathComponent(fileName)
+            if let image = UIImage.init(contentsOfFile: imagePath.path){
+                imageView.image = image
+                
+            }else{
+                print("not found")
+            }
+        }
+        
         imageBtn.titleLabel?.font = UIFont.init(customFont: .Myeongjo, withSize: Constants.Font.small)
         imageBtn.tintColor = UIColor.black
-
+        
         imageBtn.setTitle("사진 고르기", for: .normal)
         imageBtn.setTitleColor(UIColor.black, for: .normal)
         imageBtn.addTarget(self, action: #selector(openAlbum), for: .touchUpInside)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -63,14 +77,9 @@ class NewWordViewController3: UIViewController {
     
     
     func saveImageInLocal(image:UIImage, url:URL){
-        if let data = UIImagePNGRepresentation(image){
+        if let data = UIImageJPEGRepresentation(image, 1){
             try? data.write(to: url)
         }
-    }
-    
-    func getDocumentsDirectory() -> URL{
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
     
     func getCurrentTime() -> String{
@@ -83,22 +92,38 @@ class NewWordViewController3: UIViewController {
         return timeString
     }
     
-
+    
     @objc func nextBtnDidTap(){
         
         guard let wordModel = self.wordModel else { return }
         guard let imageView = self.imageView else { return }
         
         if let image = imageView.image{
-            let fileName = getCurrentTime() + ".png"
-            let filePath = getDocumentsDirectory().appendingPathComponent(fileName)
-            self.saveImageInLocal(image: image, url: filePath)
-            wordModel.imagePath = filePath.path
-        }
-        
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(wordModel)
+            let fileName = getCurrentTime() + ".jpg"
+            
+            var fileURL: URL?
+            
+            if let oldFileName = wordModel.fileName{
+                fileURL = URL.getDocumentsDirectory().appendingPathComponent(oldFileName)
+            }else{
+                fileURL = URL.getDocumentsDirectory().appendingPathComponent(fileName)
+                let realm = try! Realm()
+                try! realm.write {
+                    wordModel.fileName = fileName
+                    realm.add(wordModel)
+                    
+                    print("save: \(fileName)")
+                }
+            }
+            
+            if let fileURL = fileURL{
+                self.saveImageInLocal(image: image, url: fileURL)
+            }
+        }else{
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(wordModel)
+            }
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -113,14 +138,14 @@ class NewWordViewController3: UIViewController {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }
 
 extension NewWordViewController3: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
@@ -133,6 +158,6 @@ extension NewWordViewController3: UIImagePickerControllerDelegate, UINavigationC
         }
         
         self.imagePickerVC?.dismiss(animated: true, completion: nil)
-//        self.dismiss(animated: true, completion: nil)
+        //        self.dismiss(animated: true, completion: nil)
     }
 }

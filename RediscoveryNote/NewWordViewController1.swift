@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewWordViewController: UIViewController {
 
     var textField: UITextField?
-    
+    var wordModel: WordModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +38,11 @@ class NewWordViewController: UIViewController {
         textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -Constants.Margin.medium).isActive = true
         textField.font = UIFont.init(customFont: .Myeongjo, withSize: Constants.Font.small)
         textField.placeholder = "지금 당신에게 떠오른 단어가 있나요?"
+        
+        if let wordModel = self.wordModel,
+            let word = wordModel.word{
+            textField.text = word
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,11 +54,23 @@ class NewWordViewController: UIViewController {
         
         if let textField = self.textField{
             
-            let newWordVC = NewWordViewController2()
-            let wordModel = WordModel()
-            wordModel.word = textField.text
-            newWordVC.wordModel = wordModel
-            self.popupController?.push(newWordVC, animated: true)
+            var wordModel: WordModel?
+            if let oldWordModel = self.wordModel{
+                wordModel = oldWordModel
+            }else{
+                wordModel = WordModel()
+            }
+            
+            if let wordModel = wordModel{
+                let newWordVC = NewWordViewController2()
+                
+                let realm = try! Realm()
+                try! realm.write {
+                    wordModel.word = textField.text
+                }
+                newWordVC.wordModel = wordModel
+                self.popupController?.push(newWordVC, animated: true)
+            }
         }
     }
 

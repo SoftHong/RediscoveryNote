@@ -39,10 +39,26 @@
             </objects>
             <point key="canvasLocation" x="-528" y="238"/>
         </scene>
-        <!--View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="uQ1-rf-DTA">
+            <objects>
+                <navigationController id="YGq-ZN-VLZ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CaZ-jI-tXm">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="j1O-Ry-dNw" kind="relationship" relationship="rootViewController" id="54D-Df-RiO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aiy-EW-LHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1266" y="1012"/>
+        </scene>
+        <!--More View Controller-->
         <scene sceneID="MOo-gC-5tL">
             <objects>
-                <viewController id="j1O-Ry-dNw" sceneMemberID="viewController">
+                <viewController id="j1O-Ry-dNw" customClass="MoreViewController" customModule="RediscoveryNote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="65p-ZI-hKa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,6 +66,7 @@
                         <viewLayoutGuide key="safeArea" id="MPE-pS-OnC"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="GPz-b6-iYF"/>
+                    <navigationItem key="navigationItem" id="3KJ-7Z-W1a"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edF-n0-XPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -92,4 +109,7 @@
             <point key="canvasLocation" x="-1266" y="238"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="b4m-uS-VXp"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -12,7 +12,8 @@ import RealmSwift
 class NewWordViewController3: UIViewController {
     
     var wordModel: WordModel?
-    var imageBtn: UIButton?
+    var albumBtn: UIButton?
+    var captureBtn: UIButton?
     var imageView: UIImageView?
     var imagePickerVC: UIImagePickerController?
     
@@ -24,25 +25,53 @@ class NewWordViewController3: UIViewController {
         self.contentSizeInPopup = CGSize.init(width: 300, height: 300)
         self.landscapeContentSizeInPopup = CGSize.init(width: 400, height: 200)
         
-        let imageBtn = UIButton()
-        self.imageBtn = imageBtn
+        let albumBtn = UIButton()
+        self.albumBtn = albumBtn
+        albumBtn.titleLabel?.font = UIFont.init(customFont: .Myeongjo, withSize: Constants.Font.small)
+        albumBtn.tintColor = UIColor.black
+        
+        albumBtn.setTitle("가져오기", for: .normal)
+        albumBtn.setTitleColor(UIColor.black, for: .normal)
+        albumBtn.addTarget(self, action: #selector(openAlbum), for: .touchUpInside)
+        
+        let captureBtn = UIButton()
+        self.captureBtn = captureBtn
+        captureBtn.titleLabel?.font = UIFont.init(customFont: .Myeongjo, withSize: Constants.Font.small)
+        captureBtn.tintColor = UIColor.black
+        
+        captureBtn.setTitle("촬영하기", for: .normal)
+        captureBtn.setTitleColor(UIColor.black, for: .normal)
+        captureBtn.addTarget(self, action: #selector(openCamera), for: .touchUpInside)
         
         let imageView = UIImageView()
         self.imageView = imageView
         
+        
         imageView.contentMode = .scaleAspectFill
         
-        self.view.addSubview(imageView)
-        self.view.addSubview(imageBtn)
         
-        imageBtn.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(imageView)
+        self.view.addSubview(captureBtn)
+        self.view.addSubview(albumBtn)
+        
+        captureBtn.translatesAutoresizingMaskIntoConstraints = false
+        albumBtn.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        imageBtn.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        imageBtn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        imageBtn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        imageBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        
+        captureBtn.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        captureBtn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        captureBtn.trailingAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        captureBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        captureBtn.backgroundColor = UIColor.Custom.background
+        captureBtn.alpha = 0.5
+
+        albumBtn.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        albumBtn.leadingAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        albumBtn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        albumBtn.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        albumBtn.backgroundColor = UIColor.Custom.backgroundLight
+        albumBtn.alpha = 0.5
+
         imageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
@@ -62,19 +91,13 @@ class NewWordViewController3: UIViewController {
             }
         }
         
-        imageBtn.titleLabel?.font = UIFont.init(customFont: .Myeongjo, withSize: Constants.Font.small)
-        imageBtn.tintColor = UIColor.black
         
-        imageBtn.setTitle("사진 고르기", for: .normal)
-        imageBtn.setTitleColor(UIColor.black, for: .normal)
-        imageBtn.addTarget(self, action: #selector(openAlbum), for: .touchUpInside)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     func saveImageInLocal(image:UIImage, url:URL){
         if let data = UIImageJPEGRepresentation(image, 1){
@@ -133,6 +156,16 @@ class NewWordViewController3: UIViewController {
         let imagePickerVC = UIImagePickerController.init()
         imagePickerVC.delegate = self
         imagePickerVC.allowsEditing = true
+        self.present(imagePickerVC, animated: true)
+        self.imagePickerVC = imagePickerVC
+    }
+    
+    @objc func openCamera(){
+        let imagePickerVC = UIImagePickerController.init()
+        imagePickerVC.delegate = self
+        imagePickerVC.allowsEditing = true
+        imagePickerVC.sourceType = .camera
+        imagePickerVC.cameraCaptureMode = .photo
         self.present(imagePickerVC, animated: true)
         self.imagePickerVC = imagePickerVC
     }

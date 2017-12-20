@@ -53,7 +53,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aiy-EW-LHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1266" y="1012"/>
+            <point key="canvasLocation" x="-1266" y="1857"/>
         </scene>
         <!--More View Controller-->
         <scene sceneID="MOo-gC-5tL">
@@ -70,7 +70,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edF-n0-XPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-529" y="1012"/>
+            <point key="canvasLocation" x="-530" y="1857"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JfN-ow-Gyz">
@@ -110,6 +110,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="b4m-uS-VXp"/>
+        <segue reference="54D-Df-RiO"/>
     </inferredMetricsTieBreakers>
 </document>

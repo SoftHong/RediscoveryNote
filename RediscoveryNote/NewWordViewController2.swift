@@ -13,6 +13,7 @@ class NewWordViewController2: UIViewController {
 
     var wordModel: WordModel?
     var textView: UITextView?
+    var hintLabel: UILabel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,11 @@ class NewWordViewController2: UIViewController {
         self.view.addSubview(textView)
         self.textView = textView
         
+        let hintLabel = UITextView()
+        hintLabel.translatesAutoresizingMaskIntoConstraints = false
+        hintLabel.textAlignment = .center
+        self.view.addSubview(hintLabel)
+        
         if let navi = self.navigationController{
             textView.topAnchor.constraint(equalTo: navi.view.topAnchor).isActive = true
         }else{
@@ -40,6 +46,8 @@ class NewWordViewController2: UIViewController {
         textView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -Constants.Margin.medium).isActive = true
         textView.font = UIFont.init(customFont: .Myeongjo, withSize: Constants.Font.small)
         
+        textView.text = "그 단어는 당신에게 어떤 뜻인가요?"
+
         if let wordModel = wordModel,
             let meanaing = wordModel.meaning{
             

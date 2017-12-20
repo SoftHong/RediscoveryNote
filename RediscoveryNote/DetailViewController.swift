@@ -53,7 +53,6 @@ class DetailViewController: UIViewController {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.layer.cornerRadius = 10.0
 
-//        lineView.layer.backgroundColor = CGColor.init(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
         lineView.layer.backgroundColor = UIColor.white.cgColor
         lineView.layer.masksToBounds = false
         lineView.layer.cornerRadius = 10.0
@@ -61,12 +60,8 @@ class DetailViewController: UIViewController {
         lineView.layer.shadowOpacity = 0.2
         
         thumbnailView.contentMode = .scaleAspectFill
-//        thumbnailView.image = UIImage.init(named: "jesun")
-        
-//            ?.resizeImage(targetSize: CGSize.init(width: view.frame.width-32, height: view.frame.width-32))
         thumbnailView.clipsToBounds = true
 
-        //        wordLabel.font = UIFont.boldSystemFont(ofSize: 30)
         wordLabel.font = UIFont.init(customFont: .MyeongjoBold, withSize: 26)
         meaningLabel.font = UIFont.init(customFont: .Myeongjo, withSize: 14)
 

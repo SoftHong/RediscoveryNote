@@ -17,8 +17,6 @@ class NewWordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "다음", style: .plain, target: self, action: #selector(nextBtnDidTap))
         self.contentSizeInPopup = CGSize.init(width: 300, height: 300)
         self.landscapeContentSizeInPopup = CGSize.init(width: 400, height: 200)

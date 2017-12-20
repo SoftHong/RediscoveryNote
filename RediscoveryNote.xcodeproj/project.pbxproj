@@ -163,6 +163,7 @@
 		C12F04151F8C5DCE00316006 /* RediscoveryNote */ = {
 			isa = PBXGroup;
 			children = (
+				C13650741FD7A054007D7D4D /* Util */,
 				C1FD24D71FB198A900EACCDA /* Font */,
 				C12F04161F8C5DCE00316006 /* AppDelegate.swift */,
 				C153DF6A1F9B421300B4E0AD /* Constants.swift */,
@@ -173,10 +174,6 @@
 				C127111C1FB2AE6F00F2386D /* NewWordViewController1.swift */,
 				C12711221FB2BA1C00F2386D /* NewWordViewController2.swift */,
 				C12711241FB3067000F2386D /* NewWordViewController3.swift */,
-				C1FD24D51FB1988A00EACCDA /* UIFont+Custom.swift */,
-				C117B5F51F9B8D2600BB7392 /* UIImage+Custom.swift */,
-				C104A2491FCAE391008B0125 /* UIColor+Custom.swift */,
-				C10157C41FD0344F00CB87EF /* URL+Custom.swift */,
 				C12F041A1F8C5DCE00316006 /* Main.storyboard */,
 				C12F041D1F8C5DCE00316006 /* Assets.xcassets */,
 				C12F041F1F8C5DCE00316006 /* LaunchScreen.storyboard */,
@@ -204,6 +201,17 @@
 				C12F04381F8C5DCE00316006 /* Info.plist */,
 			);
 			path = RediscoveryNoteUITests;
+			sourceTree = "<group>";
+		};
+		C13650741FD7A054007D7D4D /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD24D51FB1988A00EACCDA /* UIFont+Custom.swift */,
+				C117B5F51F9B8D2600BB7392 /* UIImage+Custom.swift */,
+				C104A2491FCAE391008B0125 /* UIColor+Custom.swift */,
+				C10157C41FD0344F00CB87EF /* URL+Custom.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		C1FD24D71FB198A900EACCDA /* Font */ = {

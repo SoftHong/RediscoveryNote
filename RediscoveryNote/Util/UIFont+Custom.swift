@@ -16,9 +16,6 @@ enum CustomFont: String {
 }
 
 extension UIFont {
-    /**
-     Initializes an UIFont using a predefined enumeration and a given size.
-     */
     convenience init?(customFont: CustomFont, withSize size: CGFloat) {
         self.init(name: customFont.rawValue, size: size)
     }

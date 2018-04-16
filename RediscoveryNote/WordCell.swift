@@ -58,12 +58,6 @@ class WordCell: UITableViewCell {
         meaningLabel.leadingAnchor.constraint(equalTo: guides.leadingAnchor).isActive = true
         meaningLabel.trailingAnchor.constraint(equalTo: thumbnailView.trailingAnchor, constant: -60).isActive = true
         meaningLabel.bottomAnchor.constraint(equalTo: guides.bottomAnchor).isActive = true
-        
-//        self.layer.backgroundColor = CGColor.init(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
-//        self.layer.masksToBounds = false
-//        self.layer.cornerRadius = 2.0
-//        self.layer.shadowOffset = CGSize.init(width: -1, height: 1)
-//        self.layer.shadowOpacity = 0.2
     }
     
     required init?(coder aDecoder: NSCoder) {

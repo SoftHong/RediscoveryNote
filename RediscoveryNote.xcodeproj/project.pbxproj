@@ -28,6 +28,7 @@
 		C153DF6B1F9B421300B4E0AD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C153DF6A1F9B421300B4E0AD /* Constants.swift */; };
 		C1B16C341FD043E2009482E8 /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B16C331FD043E2009482E8 /* CreditViewController.swift */; };
 		C1B16C361FD04811009482E8 /* OpenSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B16C351FD04811009482E8 /* OpenSourceViewController.swift */; };
+		C1D8C9EF20865B3000759027 /* UITableView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D8C9EE20865B3000759027 /* UITableView+Util.swift */; };
 		C1FD24D61FB1988A00EACCDA /* UIFont+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD24D51FB1988A00EACCDA /* UIFont+Custom.swift */; };
 		C1FD24D91FB198C000EACCDA /* SDMiSaeng.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1FD24D81FB198B600EACCDA /* SDMiSaeng.ttf */; };
 		C1FD24DC1FB1A2F900EACCDA /* NanumMyeongjoExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1FD24DB1FB1A1B300EACCDA /* NanumMyeongjoExtraBold.ttf */; };
@@ -87,6 +88,7 @@
 		C153DF6A1F9B421300B4E0AD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C1B16C331FD043E2009482E8 /* CreditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
 		C1B16C351FD04811009482E8 /* OpenSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceViewController.swift; sourceTree = "<group>"; };
+		C1D8C9EE20865B3000759027 /* UITableView+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Util.swift"; sourceTree = "<group>"; };
 		C1FD24D51FB1988A00EACCDA /* UIFont+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Custom.swift"; sourceTree = "<group>"; };
 		C1FD24D81FB198B600EACCDA /* SDMiSaeng.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SDMiSaeng.ttf; sourceTree = "<group>"; };
 		C1FD24DA1FB1A1B300EACCDA /* NanumMyeongjo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumMyeongjo.ttf; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				C117B5F51F9B8D2600BB7392 /* UIImage+Custom.swift */,
 				C104A2491FCAE391008B0125 /* UIColor+Custom.swift */,
 				C10157C41FD0344F00CB87EF /* URL+Custom.swift */,
+				C1D8C9EE20865B3000759027 /* UITableView+Util.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				C1B16C341FD043E2009482E8 /* CreditViewController.swift in Sources */,
 				C10157C31FD0251400CB87EF /* MoreViewController.swift in Sources */,
 				C1FD24D61FB1988A00EACCDA /* UIFont+Custom.swift in Sources */,
+				C1D8C9EF20865B3000759027 /* UITableView+Util.swift in Sources */,
 				C104A24A1FCAE391008B0125 /* UIColor+Custom.swift in Sources */,
 				C11DE6081F94EF7B00F268BA /* WordModel.swift in Sources */,
 				C11DE60A1F94F2B400F268BA /* WordCell.swift in Sources */,

@@ -8,8 +8,24 @@
 
 import RealmSwift
 
-class WordModel: Object{
+class WordModel: Object {
     @objc dynamic var word: String?
     @objc dynamic var meaning: String?
     @objc dynamic var fileName: String?
+    
+    func delete() {
+        if let fileName = fileName {
+            do {
+                let imagePath = URL.getDocumentsDirectory().appendingPathComponent(fileName)
+                try FileManager.default.removeItem(atPath: imagePath.path)
+            } catch let error as NSError {
+                print("Error: \(error.domain)")
+            }
+        }
+        
+        let realm = try! Realm()
+        try! realm.write {
+            realm.delete(self)
+        }
+    }
 }

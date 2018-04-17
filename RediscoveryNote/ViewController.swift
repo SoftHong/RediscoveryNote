@@ -14,7 +14,6 @@ import Then
 
 class ViewController: UITableViewController {
     
-    let reuseIdentifier = "reuseIdentifier"
     var wordList: Results<WordModel>?
     var filterList: Results<WordModel>?
     
@@ -30,10 +29,10 @@ class ViewController: UITableViewController {
         makeNavigationBar()
         
         view.backgroundColor = UIColor.Custom.background
-        tableView.separatorColor = UIColor.clear
+        tableView.separatorColor = .clear
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(WordCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        tableView.register(WordCell.self)
 
         view.addSubview(emptyLabel)
 
@@ -104,14 +103,13 @@ class ViewController: UITableViewController {
             if let filterList = self.filterList{
                 return filterList.count
             }
-        }else{
+        } else {
             if let wordList = self.wordList{
                 if wordList.count == 0{
                     emptyLabel.isHidden = false
                 } else {
                     emptyLabel.isHidden = true
                 }
-                
                 return wordList.count
             }
         }
@@ -125,28 +123,25 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let wordCell = tableView.dequeueReusableCell(forIndexPath: indexPath) as WordCell
         
-        if let wordCell = cell as? WordCell{
+        if isSeraching {
             
-            if isSeraching {
+            if let filterList = self.filterList,
+                filterList.count > indexPath.row{
                 
-                if let filterList = self.filterList,
-                    filterList.count > indexPath.row{
-                    
-                    wordCell.wordModel = filterList[indexPath.row]
-                }
+                wordCell.wordModel = filterList[indexPath.row]
+            }
+            
+        } else {
+            if let wordList = self.wordList,
+                wordList.count > indexPath.row{
                 
-            }else{
-                if let wordList = self.wordList,
-                    wordList.count > indexPath.row{
-                    
-                    wordCell.wordModel = wordList[indexPath.row]
-                }
+                wordCell.wordModel = wordList[indexPath.row]
             }
         }
         
-        return cell
+        return wordCell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -179,32 +174,20 @@ class ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
-        if editingStyle == .delete{
-            
-            if let wordList = self.wordList,
-                wordList.count > indexPath.row{
-                
-                let targetModel = wordList[indexPath.row]
-                
-                if let fileName = targetModel.fileName{
-                    do {
-                        let imagePath = URL.getDocumentsDirectory().appendingPathComponent(fileName)
-                        try FileManager.default.removeItem(atPath: imagePath.path)
-                    } catch let error as NSError {
-                        print("Error: \(error.domain)")
-                    }
-                }
-                
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.delete(targetModel)
-                }
-                self.tableView.reloadData()
-            }
+        if editingStyle == .delete, isWordModelDeletable(forRowAt: indexPath) {
+            wordList?[indexPath.row].delete()
+            tableView.reloadData()
         }
     }
     
-    // MARK:- Realm
+    private func isWordModelDeletable(forRowAt indexPath: IndexPath) -> Bool {
+        if let wordList = wordList, wordList.count > indexPath.row {
+            return true
+        }
+        return false
+    }
+    
+    // MARK: - Realm
     
     func getWordList() {
         let realm = try! Realm()
@@ -212,10 +195,10 @@ class ViewController: UITableViewController {
         self.wordList = wordList
     }
     
-    // MARK:- Serach BAr
+    // MARK: - Serach Bar
     
-    var serachBarIsEmpty: Bool{
-        if let serachController = navigationItem.searchController{
+    var isSerachBarEmpty: Bool{
+        if let serachController = navigationItem.searchController {
             return serachController.searchBar.text?.isEmpty ?? true
         }
         
@@ -231,7 +214,7 @@ class ViewController: UITableViewController {
     
     var isSeraching: Bool{
         guard let serachController = self.navigationItem.searchController else { return false }
-        return serachController.isActive && !self.serachBarIsEmpty
+        return serachController.isActive && !isSerachBarEmpty
     }
 }
 
